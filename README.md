@@ -1,2 +1,2 @@
 # calculator
-https://www.mathewsprojet.netlify.app
+https://www.mathewsproject.netlify.app
