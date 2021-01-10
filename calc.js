@@ -1,7 +1,9 @@
 //const buttons = document.querySelectorAll('.buttonNum');
 const output = document.querySelector('[data-current-operand]');
-let operator = document.querySelectorAll('[data-operation]');  
+const operator = document.querySelectorAll('[data-operation]');  
 const equalButton = document.querySelectorAll('[data-equalButton]'); 
+const deleteAll = document.querySelectorAll('[data-delete-button]'); 
+const clearAll = document.querySelectorAll('[data-clear-button]'); 
 const buttons = document.querySelectorAll('.myBtn');
 let currentOperation = '';
 
@@ -31,6 +33,55 @@ equalButton.forEach(button => {
     })
    });
 
+deleteAll.forEach(button => {
+    button.addEventListener('click', () => {
+        deleteNum()
+        console.log('Third calculator project')
+    })
+});
+
+clearAll.forEach(clearButton => {
+    clearButton.addEventListener('click', () => {
+        clearAllOperation()
+        console.log('Second calculator project')
+    })
+});
+
+
+//Append the button value
+function appendNum(number){
+    if(number === '.' && currentOperation.includes('.')) return
+    currentOperation = output.innerText.toString() + number.toString()
+}
+
+//update the value in the box provided above
+function updateDisplay(){
+
+    output.innerText = currentOperation
+}
+
+//Delete numbers
+function  deleteNum(){
+    currentOperation = currentOperation.toString().slice(0, -1)
+}
+
+//function for the calculation
+function calculateNumber(n1){
+    let computation;
+    const currentCalc = parseFloat(currentOperation)
+    
+    if (operator === '+') return computation = currentCalc + n1
+    if (operator === '-') return computation = currentCalc - n1
+    if (operator === '*') return computation = currentCalc * n1
+    if (operator === '/') return computation = currentCalc / n1
+    
+    currentOperation = computation  
+}
+
+//clear the value in the box
+function clearAllOperation(){
+    output.innerText = ''
+}
 
 /*
 //Adding EventListner to the Operator                                               
@@ -77,53 +128,7 @@ keys.forEach(key => {
     }) //Add an EentListener to each keys
 }); //Loop through the data-action*/
 
-
-function appendNum(number){
-    currentOperation = output.innerText.toString() + number.toString()
-}
-
-function updateDisplay(){
-    output.innerText = currentOperation
-}
-
-function  deleteNum(){
-    currentOperation = currentOperation.toString().slice(0, -1)
-}
-
-function calculateNumber(n1){
-    let computation;
-    const currentCalc = parseFloat(currentOperation)
-    
-    if (operator == '+') return computation = currentCalc + n1
-    if (operator === '-') return computation = currentCalc - n1
-    if (operator === '*') return computation = currentCalc * n1
-    if (operator === '/') return computation = currentCalc / n1
-    
-    currentOperation = computation  
-}
-
-
-
-
-
-
-
-
-
-
-
-/*clearAll.forEach(clearButton => {
-    clearButton.addEventListener('click', () => {
-        console.log('Second calculator project')
-    })
-});
-
-
-deleteALL.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('Third calculator project')
-    })
-});
+/*
 
 equalButton.forEach(button => {
     button.addEventListener('click', () => {
