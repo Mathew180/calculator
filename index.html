@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 style="display: flex;justify-content: center;align-items: center;color: blue;grid-column: 1 / -1;stroke: rgb(255, 255, 255);stroke-width: 50px;margin-bottom: 30px;margin-top: 30px;">Mathew's Calculator</h1>
+        <div class="buttons">
+         
+       
+            <div data-current-operand class="output"></div>
+            <button class="span-two" data-action="clear">AC</button>
+            <button  data-action="delete">DEL</button>
+            <button data-operation>/</button>
+            <button class="myBtn">1</button>
+            <button class="myBtn">2</button>
+            <button class="myBtn">3</button>
+            <button data-operation>&times</button>
+         
+            <button class="myBtn">4</button>
+            <button class="myBtn">5</button>
+            <button class="myBtn">6</button>
+            <button data-operation>-</button>
+
+            <button class="myBtn">7</button>
+            <button class="myBtn">8</button>
+            <button class="myBtn">9</button>
+            <button data-operation>+</button>
+
+            <button class="myBtn">0</button>
+            <button data-action="decimal">.</button>
+            <button id="equalButton" class="span-two" data-equalButton>=</button>
+        </div>
+        
+        <script src="calc.js" async defer></script>
+    </body>
