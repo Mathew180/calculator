@@ -1,87 +1,172 @@
-//const buttons = document.querySelectorAll('.buttonNum');
-const output = document.querySelector('[data-current-operand]');
-const operator = document.querySelectorAll('[data-operation]');  
-const equalButton = document.querySelectorAll('[data-equalButton]'); 
-const deleteAll = document.querySelectorAll('[data-delete-button]'); 
-const clearAll = document.querySelectorAll('[data-clear-button]'); 
-const buttons = document.querySelectorAll('.myBtn');
-let currentOperation = '';
+const buttons = document.querySelectorAll('[data-number]')
+const operator = document.querySelectorAll('[data-operation-button]') 
+const equalButton = document.querySelectorAll('[data-equals-button]') 
+const deleteAll = document.querySelectorAll('[data-delete-button]')
+const clearAll = document.querySelectorAll('[data-clear-button]')
+const previousOperandTextElement = document.querySelector('[data-previous-operand]');
+const currentOperandTextElement = document.querySelector('[data-current-operand]');
+let currentOperand = ''
+let previousOpernd = ''
+let operation = undefined
 
+//const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
 //Adding EventListner to the Operator Keys
 buttons.forEach(button => {
  button.addEventListener('click', () => {    
-       appendNum(button.innerText)
-       updateDisplay()
-    console.log('numberButon')  
+       appendNumber(button.innerText)
+    
+    console.log(button.innerText)
  })
 });
 
-operator.forEach(button => {
+/*operator.forEach(button => {
     button.addEventListener('click', () => {    
-        appendNum(button.innerText)
-          updateDisplay()
+        chooseOperation(button.innerText)
+        updateDisplay()
        console.log('operator keys!')  
     })
    });
    
 equalButton.forEach(button => {
     button.addEventListener('click', () => {   
-        calculateNumber()       
+        compute()       
         updateDisplay()
-       console.log('operator keys!')  
+       console.log('equal keys!')  
     })
    });
 
 deleteAll.forEach(button => {
-    button.addEventListener('click', () => {
-        deleteNum()
+   button.addEventListener('click', () => {
+      deleted()
+      updateDisplay()
         console.log('Third calculator project')
     })
 });
 
-clearAll.forEach(clearButton => {
-    clearButton.addEventListener('click', () => {
-        clearAllOperation()
+clearAll.forEach(button => {
+    button.addEventListener('click', () => {
+       clear()
+       updateDisplay()
         console.log('Second calculator project')
     })
-});
+});*/
 
 
-//Append the button value
+
+
+   
+    function appendNumber(numbers){
+    // if(numbers === '.' && currentOperand.includes('.')) return
+    currentOperand = currentOperandTextElement.innerText.toString() + numbers.toString()
+    }
+
+    function deleted(){
+        currentOperand = currentOperand.toString().slice(0, -1)
+    }
+    
+        function chooseOperation(operation){
+            if(currentOperand === '') return
+            if(previousOpernd != ''){
+                compute()
+            }
+            operation = operation
+            previousOpernd = currentOperand
+            currentOperand = ''
+        }
+    
+        function getFormattedNumber(num){
+            const n = Number(num)
+            const value = n.toLocaleString("en")
+            return value
+        }
+    
+    function reverseNumber(num){
+        return Number(num.replace(/,/g,''))
+    }
+    
+        function compute(){
+            let computation
+            const prev = parseFloat(this.previousOpernd)
+            const current = parseFloat(this.currentOperand)
+            if(isNaN(prev) || isNaN(current))return
+            if(operation === '+'){
+             computation = prev + current
+            }
+    
+            if(operation === '-'){
+                computation = prev - current
+               }
+    
+               if(operation === '/'){
+                computation = prev / current
+               }
+    
+               if(operation === '*'){
+                computation = prev * current
+               }
+    
+            currentOperand = computation
+            previousOpernd = ''
+            operation = undefined
+        }
+    function updateDislay(){
+        currentOperandTextElement.innerText = currentOperand
+        previousOperandTextElement.innerText = previousOperand
+    }
+  
+
+
+//}
+
+
+
+/*/Append the button value
 function appendNum(number){
     if(number === '.' && currentOperation.includes('.')) return
-    currentOperation = output.innerText.toString() + number.toString()
+    currentOperation =  currentOperation.toString() + number.toString()
 }
 
 //update the value in the box provided above
 function updateDisplay(){
-
     output.innerText = currentOperation
+    
+}
+
+
+function chooseOperation(operation) {  
+    operations = operation
+    currentOperation += operations
 }
 
 //Delete numbers
-function  deleteNum(){
-    currentOperation = currentOperation.toString().slice(0, -1)
-}
+//function  deleteNum(){
+   // currentOperation = currentOperation.toString().slice(0, -1)
+//}
 
 //function for the calculation
-function calculateNumber(n1){
-    let computation;
+function calculateNumber(n1,n2){
+    let computation = '';
+
     const currentCalc = parseFloat(currentOperation)
     
-    if (operator === '+') return computation = currentCalc + n1
-    if (operator === '-') return computation = currentCalc - n1
-    if (operator === '*') return computation = currentCalc * n1
-    if (operator === '/') return computation = currentCalc / n1
+    if(isNaN(currentCalc)) return
+
+    if (operations === '+'){
+        computation = parseFloat(n1) + parseFloat(n2)
+    }
+
     
-    currentOperation = computation  
+    return computation  
+    
 }
 
 //clear the value in the box
 function clearAllOperation(){
+    currentOperation = ''
     output.innerText = ''
 }
+
 
 /*
 //Adding EventListner to the Operator                                               
