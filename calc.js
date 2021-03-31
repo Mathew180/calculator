@@ -126,7 +126,7 @@ buttons.forEach(button => {
         button.addEventListener('click', () => { 
          calculator.compute()
          calculator.updateDisplay()
-           console.log('equal keys!')  
+           console.log('equal key!')  
         })
      })
    
